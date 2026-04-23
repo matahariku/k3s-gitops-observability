@@ -1,0 +1,14 @@
+externalURL: http://harbor.okfe.net
+harborAdminPassword: Harbor12345
+persistence:
+  enabled: true
+  registry:
+    existingClaim: harbor-registry-pvc  # NFS-mu
+expose:
+  type: ingress
+  ingress:
+    className: nginx
+    hosts:
+      core: harbor.okfe.net
+    annotations:
+      nginx.ingress.kubernetes.io/proxy-body-size: "0"
