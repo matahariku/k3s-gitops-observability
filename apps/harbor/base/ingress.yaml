@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: laravel-sre
+  namespace: sre
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    # FIX 308 LOOP!
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  tls:
+  - hosts:
+    - laravel-sre.okfe.net
+    secretName: laravel-sre-tls-wildcard
+  rules:
+  - host: laravel-sre.okfe.net
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: laravel-sre
+            port:
+              number: 80
+
+
+
+
