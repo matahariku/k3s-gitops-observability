@@ -10,11 +10,12 @@ spec:
     targetRevision: HEAD
     path: apps/harbor/base
     helm:
-      name: harbor
-      repoURL: https://helm.goharbor.io
+      releaseName: harbor
+      chart: harbor
       version: '^1.18.0'
+      repoURL: https://helm.goharbor.io
       valueFiles:
-      - values-gitops.yaml  # Buat ini nanti
+      - values-gitops.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: harbor
