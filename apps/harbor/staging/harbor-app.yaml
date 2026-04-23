@@ -11,11 +11,11 @@ spec:
     path: apps/harbor/base
     helm:
       releaseName: harbor
-      chart: harbor
-      version: '^1.18.0'
-      repoURL: https://helm.goharbor.io
       valueFiles:
-      - values-gitops.yaml
+        - values-gitops.yaml
+      parameters:
+        - name: expose.ingress.hosts.core[0]
+          value: harbor.okfe.net
   destination:
     server: https://kubernetes.default.svc
     namespace: harbor
